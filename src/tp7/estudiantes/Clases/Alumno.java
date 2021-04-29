@@ -46,8 +46,9 @@ public class Alumno {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void agregarMateria(Materia m){
-        lista.add(m);
+    public int agregarMateria(Materia m){
+       if (lista.add(m)){return 1;}
+       else return 0;
     }
     public int cantidadMaterias(){
         return lista.size();
@@ -76,5 +77,10 @@ public class Alumno {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return apellido + " " + nombre;
     }
 }

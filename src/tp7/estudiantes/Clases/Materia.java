@@ -72,5 +72,10 @@ public class Materia {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return nombre + " " + anio;
+    }
+   
     
 }

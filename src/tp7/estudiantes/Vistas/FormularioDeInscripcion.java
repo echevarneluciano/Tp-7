@@ -7,6 +7,7 @@ package tp7.estudiantes.Vistas;
 
 import java.util.Iterator;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import tp7.estudiantes.Clases.Alumno;
 import tp7.estudiantes.Clases.Materia;
 
@@ -21,6 +22,18 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
      */
     public FormularioDeInscripcion() {
         initComponents();
+        Iterator <Alumno> it=Inscripcion.alumnos.iterator();
+        Iterator <Materia> it2=Inscripcion.materias.iterator();
+        comboAlumno.addItem(null);
+        comboMateria.addItem(null);
+    while(it.hasNext()){
+        Alumno a1=it.next();
+        comboAlumno.addItem(a1);
+    }
+    while(it2.hasNext()){
+        Materia m1=it2.next();
+        comboMateria.addItem(m1);
+    }
     }
 
     /**
@@ -33,11 +46,11 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        Calumno = new javax.swing.JComboBox<>();
-        Cmateria = new javax.swing.JComboBox<>();
         Binscribir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        comboAlumno = new javax.swing.JComboBox<>();
+        comboMateria = new javax.swing.JComboBox<>();
 
         setClosable(true);
 
@@ -45,20 +58,12 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Formulario de Inscripcion");
 
-        Calumno.setToolTipText("");
-        Calumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CalumnoActionPerformed(evt);
-            }
-        });
-
-        Cmateria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmateriaActionPerformed(evt);
-            }
-        });
-
         Binscribir.setText("Inscribir");
+        Binscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BinscribirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Alumno");
 
@@ -73,7 +78,7 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(277, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -82,11 +87,11 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Calumno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                                .addComponent(comboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Cmateria, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
@@ -96,10 +101,10 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Calumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(Cmateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(comboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
                 .addComponent(Binscribir)
                 .addGap(37, 37, 37))
         );
@@ -107,29 +112,24 @@ public class FormularioDeInscripcion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CalumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalumnoActionPerformed
-    String nombreAlumnos;
-    FormularioDeAlumnos fa1=new FormularioDeAlumnos();
-    JComboBox c1=new JComboBox();
-    c1.removeAllItems();
-//    Iterator <Alumno> it=fa1.alumnos.iterator();
-//    while(it.hasNext()){
-//        Alumno a1=it.next();
-//        System.out.println("a");
-//    }
-//    c1.addItem(it);
-// TODO add your handling code here:
-    }//GEN-LAST:event_CalumnoActionPerformed
-
-    private void CmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmateriaActionPerformed
+    private void BinscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BinscribirActionPerformed
+        
+        Materia m1=(Materia)comboMateria.getSelectedItem();
+        Alumno a1=(Alumno) comboAlumno.getSelectedItem();
+        if(m1==null||a1==null)
+        {JOptionPane.showMessageDialog(this,"Seleccionar datos en ambos campos");}else
+        if(a1.agregarMateria(m1)==1){
+        JOptionPane.showMessageDialog(this,"Inscripto con exito");}
+        else JOptionPane.showMessageDialog(this,"No es posible o ya se encuentra inscripto a la materia");
+        
         // TODO add your handling code here:
-    }//GEN-LAST:event_CmateriaActionPerformed
+    }//GEN-LAST:event_BinscribirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Binscribir;
-    private javax.swing.JComboBox<Alumno> Calumno;
-    private javax.swing.JComboBox<Materia> Cmateria;
+    private javax.swing.JComboBox<Alumno> comboAlumno;
+    private javax.swing.JComboBox<Materia> comboMateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

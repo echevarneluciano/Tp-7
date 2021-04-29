@@ -152,8 +152,8 @@ public class FormularioDeMaterias extends javax.swing.JInternalFrame {
     Fnombre.setText("");
     Fanio.setText("");
     Materia m1=new Materia(codigo,nombre,anio);
-    Inscripcion i=new Inscripcion();
-    i.agregarMateria(m1);
+    Inscripcion i1=new Inscripcion();
+    i1.agregarMateria(m1);
     System.out.println(Inscripcion.materias.size());
         // TODO add your handling code here:
     }//GEN-LAST:event_BagregarActionPerformed

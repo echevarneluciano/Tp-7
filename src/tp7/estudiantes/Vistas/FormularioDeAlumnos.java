@@ -150,6 +150,7 @@ public class FormularioDeAlumnos extends javax.swing.JInternalFrame {
     Alumno a1=new Alumno(legajo,apellido,nombre);
     Inscripcion i=new Inscripcion();
     i.agregarAlumno(a1);
+    System.out.println(Inscripcion.alumnos.size());
         // TODO add your handling code here:
     }//GEN-LAST:event_BagregarActionPerformed
 
